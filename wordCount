@@ -1,0 +1,46 @@
+import random
+
+#to make sure that these words are not added to the dictionary
+punct = (".", ";", "!", "?", ",")
+count = 0
+new_word = ""
+
+
+#code for the file
+inputfile = input("Enter input file name:")
+
+with open(speech.txt, 'r') as fin:
+    for line in fin.readlines():  # Read line by line in txt file
+
+        for word in line.split():  # Read word by word in each line
+
+            if len(word) > 3:  # If word length >3
+
+#if the word has punctation remove the punctation
+
+                if word.endswith(punct):
+                    word1 = word[1:-2]
+                    word1 = random.sample(word1, len(word1))
+                    word1.insert(0, word[0])
+                    word1.append(word[-2])
+                    word1.append(word[-1])
+
+#if no punctation add to dictionary and count
+                    else:
+                    word1 = word[1:-1]
+                    word1 = random.sample(word1, len(word1))
+                    word1.insert(0, word[0])
+                    word1.append(word[-1])
+                    new_word = new_word + ''.join(word1) + " "
+
+
+
+                else:
+                new_word = new_word + word + " "
+
+            # "Append to <filename>Scrambled.txt"
+
+    with open((speech.txt[:-4] + "Scrambled.txt"), 'a+') as fout:
+        fout.write(new_word + "\n")
+
+    new_word = ""
